@@ -16,7 +16,15 @@ def adduser():
         username = request.args.get("uname")
         print("got args")
         firebase_api.addUser(uid, username)
-        return jsonify({"status": "done"})
+        return jsonify({"status": "ok"})
+    except:
+        return jsonify({"status": "error"})
+
+@app.route('/getuserdata')
+def getUserData():
+    try:
+        uid = request.args.get("uid")
+        return jsonify({"status": "ok", "userData": firebase_api.getUser(uid)})
     except:
         return jsonify({"status": "error"})
 
