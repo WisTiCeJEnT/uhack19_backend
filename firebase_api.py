@@ -6,7 +6,7 @@ def addUser(uid, name):
   db.child("/user/").child(uid).set(data)
 
 def getUser(uid):
-  return db.child("user").child(uid).get().val()
+  return db.child("user").child(1).get().val()
     
 
 config = {
