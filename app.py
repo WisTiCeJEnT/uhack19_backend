@@ -21,10 +21,10 @@ def adduser():
     except:
         return jsonify({"status": "error"})
 
-@app.route('/userdata', methods = ['GET'])
+@app.route('/userdata', methods = ['POST'])
 def getUserData():
     try:
-        if request.method == 'GET':
+        if request.method == 'POST':
             uid = request.args.get("uid")
             return jsonify({"status": "ok", "userData": firebase_api.getUser(uid)})
     except:
