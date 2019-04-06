@@ -44,8 +44,21 @@ def addProj(proj, projName, projInfo, projImg, hostName, status, cvol, vol):
 def getPort(uid):
   lsProj = []
   invs = db.child("user").child(uid).child("inv").get().val()
+  print(invs)
   allProj = listAllProj()
+  allProj = allProj[1:]
+  print(allProj)
+  init = True
+  tmp = {}
+  for i in range(len(allProj)):
+      tmp[str(allProj[i]["proj"])] = allProj[i]
+  #print()
+  #print(tmp)
+  allProj = tmp
   for inv in invs:
+    if(init):
+        init = False
+        continue
     lsProj.append([allProj[inv[0]], inv[1]])
   return lsProj
 
