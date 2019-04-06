@@ -11,7 +11,13 @@ def getUser(uid):
     
 def addInv(uid, prod, quan):
   data = getUser(uid)
-  data["inv"].append([prod, quan])
+
+  if(data == None):
+      print("No user")
+      return 0
+
+      print("old data ->",data)
+  data["inv"].append(prod)
   db.child("/user/").child(uid).set(data)
   
 def addProj(proj, projName, hostName, status, vol):
