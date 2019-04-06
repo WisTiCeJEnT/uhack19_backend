@@ -9,7 +9,7 @@ def addUser(uid, name):
 def getUser(uid):
   return db.child("user").child(uid).get().val()
     
-def addInv(uid, prod, quan):
+def addInv(uid, proj, invest):
   data = getUser(uid)
 
   if(data == None):
@@ -17,8 +17,15 @@ def addInv(uid, prod, quan):
       return 0
 
   print("old data ->",data)
-  data["inv"].append(prod)
+  data["inv"].append([proj, invest])
+  updateVol(proj, invest)
   db.child("/user/").child(uid).set(data)
+
+
+def updateVol(proj, invest):
+  data = db.child("project").child(proj).get().val()
+  data["cvol"] += invest
+  db.child("/project/").child(proj).set(data)
 
 def listAllProj():
   return db.child("project").get().val()
@@ -42,6 +49,8 @@ def getPort(uid):
     lsProj.append(allProj[inv])
   return lsProj
 
+
+
 config = {
   "apiKey": "AIzaSyA8gvXnhMyyPaBLgLm7_eHFfBQA0UrasVQ",
   "authDomain": "projectId.firebaseapp.com",
@@ -51,6 +60,3 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
-
-img = "https://pbs.twimg.com/profile_images/1039233279461797889/mTEbn3zl.jpg"
-addProj(1, "ไร่ลุงจอห์น", "ระดมทุนช่วยลุงจอห์นทำไร่ข้าวโพด", img, "ลุงจอห์น", "Funding", 87500, 120000)
