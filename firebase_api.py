@@ -3,8 +3,7 @@ import pyrebase
 def addUser(uid, name):
   data = {"uid": uid
         , "name": name}
-  db.child("/user/").push(data)
-
+  db.child("/user/").child(uid).set(data)
 
 config = {
   "apiKey": "AIzaSyA8gvXnhMyyPaBLgLm7_eHFfBQA0UrasVQ",
