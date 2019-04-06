@@ -9,14 +9,24 @@ CORS(app)
 def root():
     return "Working"
 
-@app.route('/adduser')
+@app.route('/adduser', methods = ['POST'])
 def adduser():
     try:
-        uid = request.args.get("uid")
-        username = request.args.get("uname")
-        print("got args")
-        firebase_api.addUser(uid, username)
-        return jsonify({"status": "done"})
+        if request.method == 'POST':
+            uid = request.args.get("uid")
+            username = request.args.get("uname")
+            print("got args")
+            firebase_api.addUser(uid, username)
+            return jsonify({"status": "ok"})
+    except:
+        return jsonify({"status": "error"})
+
+@app.route('/userdata', methods = ['GET'])
+def getUserData():
+    try:
+        if request.method == 'GET':
+            uid = request.args.get("uid")
+            return jsonify({"status": "ok", "userData": firebase_api.getUser(uid)})
     except:
         return jsonify({"status": "error"})
 
