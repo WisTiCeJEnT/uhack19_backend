@@ -24,7 +24,7 @@ def listAllProj():
   return db.child("project").get().val()
 
 def addProj(proj, projName, projInfo, projImg, hostName, status, cvol, vol):
-  proj = {"proj": proj
+  project = {"proj": proj
         , "projName": projName
         , "projInfo": projInfo
         , "projImg": projImg
@@ -32,7 +32,7 @@ def addProj(proj, projName, projInfo, projImg, hostName, status, cvol, vol):
         , "status": status
         , "cvol" : cvol
         , "vol": vol}
-  db.child("/project/").child(proj).set(proj)
+  db.child("/project/").child(proj).set(project)
 
 def getPort(uid):
   lsProj = []
@@ -52,3 +52,5 @@ config = {
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
+img = "https://pbs.twimg.com/profile_images/1039233279461797889/mTEbn3zl.jpg"
+addProj(1, "ไร่ลุงจอห์น", "ระดมทุนช่วยลุงจอห์นทำไร่ข้าวโพด", "xd", "ลุงจอห์น", "Funding", 87500, 120000)
