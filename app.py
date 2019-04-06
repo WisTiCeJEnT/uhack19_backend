@@ -53,8 +53,8 @@ def listUserPort():
             port[i] = port[i][0]
         return jsonify({"data": port})
 
-@app.route('/userport', methods = ['GET'])
-def listUserPort():
+@app.route('/userchart', methods = ['GET'])
+def getUserChart():
     if request.method == 'GET':
         uid = request.args.get("uid")
         port = firebase_api.getPort(uid)
