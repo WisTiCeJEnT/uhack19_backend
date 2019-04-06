@@ -1,5 +1,11 @@
 import pyrebase
 
+def addUser(uid, name):
+  data = {"uid": uid
+        , "name": name}
+  db.child("/user/").push(data)
+
+
 config = {
   "apiKey": "AIzaSyA8gvXnhMyyPaBLgLm7_eHFfBQA0UrasVQ",
   "authDomain": "projectId.firebaseapp.com",
@@ -9,6 +15,4 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
-data = {"name": "Mortimer 'Morty' Smith"}
-db.child("/").push(data)
 
