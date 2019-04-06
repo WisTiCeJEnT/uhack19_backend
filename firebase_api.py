@@ -9,7 +9,7 @@ def addUser(uid, name):
 def getUser(uid):
   return db.child("user").child(uid).get().val()
     
-def addInv(prod, uid):
+def addInv(uid, prod):
   data = getUser(uid)
   data["inv"].append(prod)
   db.child("/user/").child(uid).set(data)
