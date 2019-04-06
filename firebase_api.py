@@ -16,7 +16,7 @@ def addInv(uid, prod, quan):
       print("No user")
       return 0
 
-      print("old data ->",data)
+  print("old data ->",data)
   data["inv"].append(prod)
   db.child("/user/").child(uid).set(data)
   
