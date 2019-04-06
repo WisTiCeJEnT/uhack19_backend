@@ -45,5 +45,24 @@ def addUserInv():
     except:
         return jsonify({"status": "error"})
 
+@app.route('/allproject', methods = ['GET'])
+def listAllProject():
+    if request.method == 'GET':
+        allProj = firebase_api.listAllProj()
+        print(allProj)
+        tmp = []
+        for i in range(1,len(allProj)):
+            t = {}
+            t["projID"] = allProj[i]["proj"]
+            t["projName"] = allProj[i]["projName"]
+            t["projDetail"] = allProj[i]["projInfo"]
+            t["cVol"] = allProj[i]["cvol"]
+            t["maxVol"] = allProj[i]["vol"]
+            t["hostname"] = allProj[i]["hostName"]
+            t["imglink"] = allProj[i]["projImg"]
+            tmp.append(t)
+        return jsonify({"status": "ok",
+                        "projId": tmp})
+
 if __name__ == "__main__":
     app.run(debug = False,host="0.0.0.0", port=5000)
