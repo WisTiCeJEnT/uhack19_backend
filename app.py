@@ -62,7 +62,7 @@ def listAllProject():
             t["imglink"] = allProj[i]["projImg"]
             tmp.append(t)
         return jsonify({"status": "ok",
-                        "projId": tmp})
+                        "data": tmp})
 
 if __name__ == "__main__":
     app.run(debug = False,host="0.0.0.0", port=5000)
