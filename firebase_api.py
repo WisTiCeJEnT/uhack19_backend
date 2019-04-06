@@ -46,7 +46,7 @@ def getPort(uid):
   invs = db.child("user").child(uid).child("inv").get().val()
   allProj = listAllProj()
   for inv in invs:
-    lsProj.append(allProj[inv])
+    lsProj.append([allProj[inv[0]], inv[1]])
   return lsProj
 
 
@@ -60,3 +60,4 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
+
