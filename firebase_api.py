@@ -9,11 +9,18 @@ def addUser(uid, name):
 def getUser(uid):
   return db.child("user").child(uid).get().val()
     
-def addInv(uid, prod):
+def addInv(uid, prod, quan):
   data = getUser(uid)
-  data["inv"].append(prod)
+  data["inv"].append([prod, quan])
   db.child("/user/").child(uid).set(data)
   
+def addProj(proj, projName, hostName, status, vol):
+  proj = {"proj": proj
+        , "projName": projName
+        , "hostName": hostName
+        , "status": status
+        , "vol": vol}
+  db.child("/project/").child(proj).set(proj)
 
 config = {
   "apiKey": "AIzaSyA8gvXnhMyyPaBLgLm7_eHFfBQA0UrasVQ",
