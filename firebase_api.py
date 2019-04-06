@@ -5,6 +5,10 @@ def addUser(uid, name):
         , "name": name}
   db.child("/user/").child(uid).set(data)
 
+def getUser(uid):
+  return db.child("user").child(uid).get().val()
+    
+
 config = {
   "apiKey": "AIzaSyA8gvXnhMyyPaBLgLm7_eHFfBQA0UrasVQ",
   "authDomain": "projectId.firebaseapp.com",
@@ -14,4 +18,3 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
-
