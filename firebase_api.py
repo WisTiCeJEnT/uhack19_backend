@@ -2,12 +2,18 @@ import pyrebase
 
 def addUser(uid, name):
   data = {"uid": uid
-        , "name": name}
+        , "name": name
+        , "inv": []}
   db.child("/user/").child(uid).set(data)
 
 def getUser(uid):
   return db.child("user").child(uid).get().val()
     
+def addInv(prod, uid):
+  data = getUser(uid)
+  data["inv"].append(prod)
+  db.child("/user/").child(uid).set(data)
+  
 
 config = {
   "apiKey": "AIzaSyA8gvXnhMyyPaBLgLm7_eHFfBQA0UrasVQ",
