@@ -4,6 +4,8 @@ def addUser(uid, name):
   data = {"uid": uid
         , "name": name
         , "inv": [0]}
+  userlist = db.child("user").get().val()
+  print(userlist)
   db.child("/user/").child(uid).set(data)
 
 def getUser(uid):
@@ -41,6 +43,9 @@ def addProj(proj, projName, projInfo, projImg, hostName, status, cvol, vol):
         , "vol": vol}
   db.child("/project/").child(proj).set(project)
 
+def getProjDetail(pid):
+    pass
+
 def getPort(uid):
   lsProj = []
   invs = db.child("user").child(uid).child("inv").get().val()
@@ -52,9 +57,10 @@ def getPort(uid):
   tmp = {}
   for i in range(len(allProj)):
       tmp[str(allProj[i]["proj"])] = allProj[i]
-  #print()
-  #print(tmp)
+  print()
+  print(tmp)
   allProj = tmp
+  print(invs)
   for inv in invs:
     if(init):
         init = False

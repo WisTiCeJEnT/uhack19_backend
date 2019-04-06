@@ -48,19 +48,28 @@ def listUserPort():
     if request.method == 'GET':
         uid = request.args.get("uid")
         port = firebase_api.getPort(uid)
+        print(port)
         for i in range(len(port)):
             port[i][0]["myVol"] = port[i][1]
             port[i] = port[i][0]
         return jsonify({"data": port})
 
-@app.route('/userchart', methods = ['GET'])
-def getUserChart():
+@app.route('/userlabelchart', methods = ['GET'])
+def getUserLabelChart():
     if request.method == 'GET':
         uid = request.args.get("uid")
         port = firebase_api.getPort(uid)
         for i in range(len(port)):
-            port[i][0] = port[i][0]['projName']
-            port[i] = port[i][0]
+            port[i] = port[i][0]['projName']
+        return jsonify({"data": port})
+
+@app.route('/uservaluechart', methods = ['GET'])
+def getUserValueChart():
+    if request.method == 'GET':
+        uid = request.args.get("uid")
+        port = firebase_api.getPort(uid)
+        for i in range(len(port)):
+            port[i] = port[i][1]
         return jsonify({"data": port})
         
 @app.route('/allproject', methods = ['GET'])
