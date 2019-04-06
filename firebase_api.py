@@ -1,12 +1,11 @@
 import pyrebase
 
 def addUser(uid, name):
-  data = {"uid": uid
-        , "name": name
-        , "inv": [0]}
-  userlist = db.child("user").get().val()
-  print(userlist)
-  db.child("/user/").child(uid).set(data)
+  if(uid not in dict(db.child("user").get().val()).keys()):
+      data = {"uid": uid
+            , "name": name
+            , "inv": [0]}
+      db.child("/user/").child(uid).set(data)
 
 def getUser(uid):
   return db.child("user").child(uid).get().val()
