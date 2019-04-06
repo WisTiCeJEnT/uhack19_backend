@@ -11,6 +11,10 @@ def getUser(uid):
     
 def addInv(uid, prod):
   data = getUser(uid)
+  if(data == None):
+      print("No user")
+      return 0;
+  print("old data ->",data)
   data["inv"].append(prod)
   db.child("/user/").child(uid).set(data)
   
