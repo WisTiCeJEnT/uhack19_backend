@@ -14,3 +14,4 @@ Werkzeug==0.14.1
 flask_cors
 freeze
 line-bot-sdk==1.5.0
+pyrebase
