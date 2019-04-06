@@ -39,7 +39,8 @@ def addUserInv():
         if request.method == 'GET':
             uid = request.args.get("uid")
             prodId = request.args.get("pid")
-            firebase_api.addInv(uid, prodId)
+            quan = request.args.get("quan")
+            firebase_api.addInv(uid, prodId, quan)
             return jsonify({"status": "ok",
                             "uid": uid})
     except:
