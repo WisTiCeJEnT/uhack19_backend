@@ -53,4 +53,4 @@ firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 
 img = "https://pbs.twimg.com/profile_images/1039233279461797889/mTEbn3zl.jpg"
-addProj(1, "ไร่ลุงจอห์น", "ระดมทุนช่วยลุงจอห์นทำไร่ข้าวโพด", "xd", "ลุงจอห์น", "Funding", 87500, 120000)
+addProj(1, "ไร่ลุงจอห์น", "ระดมทุนช่วยลุงจอห์นทำไร่ข้าวโพด", img, "ลุงจอห์น", "Funding", 87500, 120000)
