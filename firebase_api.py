@@ -43,7 +43,7 @@ def addProj(proj, projName, projInfo, projImg, hostName, status, cvol, vol):
   db.child("/project/").child(proj).set(project)
 
 def getProjDetail(pid):
-    pass
+  return db.child("project").child(pid).get().val()
 
 def getPort(uid):
   lsProj = []

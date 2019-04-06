@@ -43,6 +43,12 @@ def addUserInv():
         return jsonify({"status": "ok",
                         "uid": uid})
 
+@app.route('/projectdetail', methods = ['GET'])
+def getProjectDetail():
+    if request.method == 'GET':
+        pid = request.args.get("pid")
+        return jsonify(firebase_api.getProjDetail(pid))
+
 @app.route('/userport', methods = ['GET'])
 def listUserPort():
     if request.method == 'GET':
