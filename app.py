@@ -35,16 +35,13 @@ def getUserData():
 
 @app.route('/adduserinv', methods = ['GET'])
 def addUserInv():
-    try:
-        if request.method == 'GET':
-            uid = request.args.get("uid")
-            prodId = request.args.get("pid")
-            quan = request.args.get("quan")
-            firebase_api.addInv(uid, prodId, quan)
-            return jsonify({"status": "ok",
-                            "uid": uid})
-    except:
-        return jsonify({"status": "error"})
+    if request.method == 'GET':
+        uid = request.args.get("uid")
+        prodId = request.args.get("pid")
+        quan = request.args.get("quan")
+        firebase_api.addInv(uid, prodId, quan)
+        return jsonify({"status": "ok",
+                        "uid": uid})
 
 @app.route('/allproject', methods = ['GET'])
 def listAllProject():

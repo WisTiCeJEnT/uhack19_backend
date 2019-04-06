@@ -24,7 +24,7 @@ def addInv(uid, proj, invest):
 
 def updateVol(proj, invest):
   data = db.child("project").child(proj).get().val()
-  data["cvol"] += invest
+  data["cvol"] += int(invest)
   db.child("/project/").child(proj).set(data)
 
 def listAllProj():
