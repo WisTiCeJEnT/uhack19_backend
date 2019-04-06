@@ -3,7 +3,7 @@ import pyrebase
 def addUser(uid, name):
   data = {"uid": uid
         , "name": name
-        , "inv": []}
+        , "inv": [0]}
   db.child("/user/").child(uid).set(data)
 
 def getUser(uid):
