@@ -11,7 +11,6 @@ def root():
 
 @app.route('/adduser', methods = ['GET'])
 def adduser():
-    try:
         if request.method == 'GET':
             uid = request.args.get("uid")
             username = request.args.get("uname")
@@ -19,8 +18,6 @@ def adduser():
             firebase_api.addUser(uid, username)
             return jsonify({"status": "ok",
                             "uid": uid})
-    except:
-        return jsonify({"status": "error"})
 
 @app.route('/userdata', methods = ['GET'])
 def getUserData():
@@ -58,6 +55,7 @@ def listUserPort():
         for i in range(len(port)):
             port[i][0]["myVol"] = port[i][1]
             port[i] = port[i][0]
+            port[i]["projID"] = port[i]["proj"]
         return jsonify({"data": port})
 
 @app.route('/userlabelchart', methods = ['GET'])
